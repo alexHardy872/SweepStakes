@@ -10,6 +10,9 @@ namespace SweepStakes
     {
         static void Main(string[] args)
         {
+
+           // UI.GetContestantInformation();
+            UI.GetUserInputInt("enter a number");
         }
     }
 }
