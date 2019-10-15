@@ -9,7 +9,7 @@ namespace SweepStakes
 {
     static class UI
     {
-
+        private static Random rand = new Random();
         public static string GetManagerStyle()
         {
             string sweepstakesManagerStyle = GetUserInput("Stack or Queue structured Sweepstakes? ('S', or 'Q')").ToUpper();
@@ -69,12 +69,18 @@ namespace SweepStakes
         }
 
 
-        public static void GetContestantInformation(Contestant contestant, Random random)
+        public static void GetContestantInformation(Contestant contestant)
         {
             contestant.firstName = GetFirstName();
             contestant.lastName = GetLastName();
             contestant.email = GetEmail();
-            contestant.registrationNumber = GenerateRandomNumber(random, 100000, 999999);
+        }
+
+        public static void DisplayContestantInformation(Contestant contestant)
+        {
+            Console.WriteLine(contestant.firstName + " " + contestant.lastName);
+            Console.WriteLine(contestant.email);
+            Console.WriteLine("Registration numver :" + contestant.registrationNumber);
         }
 
 
@@ -119,10 +125,10 @@ namespace SweepStakes
 
         
 
-        public static int GenerateRandomNumber(Random random, int min, int max)
+        public static int GenerateRandomNumber(int min, int max)
         {
-            int rand = random.Next(min, max);
-            return rand;
+            int randNum = rand.Next(min, max);
+            return randNum;
         }
 
         

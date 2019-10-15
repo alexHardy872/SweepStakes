@@ -13,7 +13,7 @@ namespace SweepStakes
 
 
           void InsertSweepstakes(Sweepstakes sweepstakes);
-
+        void RemoveSweepstakes();
           Sweepstakes GetSweepstakes();
         
 

@@ -18,12 +18,12 @@ namespace SweepStakes
         }
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-            // PUSH SWEEPSTAKES
+            stack.Push(sweepstakes);
         }
 
-        public void RemoveSweepstakes(Sweepstakes sweepstakes)
+        public void RemoveSweepstakes()
         {
-            // POP SWEEPSTAKES
+            stack.Pop();
         }
 
 

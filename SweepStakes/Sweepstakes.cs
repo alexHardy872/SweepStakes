@@ -23,13 +23,14 @@ namespace SweepStakes
         public Sweepstakes(string name)
         {
             dictionary = new Dictionary<string, string>();
-            random = new Random();
+            
         }
 
 
         public void RegisterContestant(Contestant contestant)
         {
-            UI.GetContestantInformation(contestant, random);
+            UI.GetContestantInformation(contestant);
+            contestant.registrationNumber = UI.GenerateRandomNumber(10000, 99999); // TEST IF UNIQUE?
             
         }
 
@@ -40,9 +41,10 @@ namespace SweepStakes
             return contestant;
         }
 
+
         public void PrintContestantInfo(Contestant contestant)
         {
-
+            UI.DisplayContestantInformation(contestant);
         }
 
 
