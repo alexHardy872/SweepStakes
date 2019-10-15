@@ -13,7 +13,8 @@ namespace SweepStakes
         public Dictionary<Contestant, int> contestants;
         public string name;
         public List<int> usedList;
-
+        public string winner;
+        bool menuLoop = true;
         
 
         
@@ -26,6 +27,7 @@ namespace SweepStakes
             contestants = new Dictionary<Contestant, int>();
             this.name = name;
             usedList = new List<int>();
+
             
         }
 
@@ -33,12 +35,12 @@ namespace SweepStakes
         public void RegisterContestant(Contestant contestant)
         {
             UI.GetContestantInformation(contestant);
-            contestant.registrationNumber = FindUniqueRegistrationNumber(contestant);
-            contestants.Add(contestant, contestant.registrationNumber); // what key values?
+            contestant.registrationNumber = FindUniqueRegistrationNumber();
+            contestants.Add(contestant, contestant.registrationNumber); 
             
         }
 
-        public int FindUniqueRegistrationNumber(Contestant contestant)
+        public int FindUniqueRegistrationNumber()
         {
             int regNum;
             do
@@ -53,13 +55,65 @@ namespace SweepStakes
         }
 
 
-       // public Contestant PickWinner()
-        //{
-            // CHOOSE FROM LIST OF VALUES RANDOMLY
-            // FIND CONTESTANT WITH THAT ID
+        public void Menu()
+        {
+            menuLoop = true;
+            do
+            {
+                UI.SweepstakesMenu();
+                MenuSelection(UI.SweepstakesMenuSelection());
+            }
+            while (menuLoop == true);
 
-            //return contestant;
-       // }
+        }
+
+        public void MenuSelection(string selection)
+        {
+            switch (selection)
+            {
+                case "R":
+                    Contestant contestant = new Contestant();
+                    RegisterContestant(contestant);
+                    break;
+                case "W":
+                    PickWinner();
+                    menuLoop = false;
+                    break;
+                case "E":
+                    menuLoop = false;
+                    break;
+             
+            }
+        }
+
+
+        public Contestant PickWinner()
+        {
+            
+            int winningNum = usedList[UI.GenerateRandomNumber(0, usedList.Count-1)];
+
+            foreach (KeyValuePair<Contestant, int> contestant in contestants)
+            {
+                if (contestant.Value == winningNum)
+                {
+                    contestant.Key.isWinner = true;
+                    winner = contestant.Key.firstName + " " + contestant.Key.lastName;
+                    PrintContestantInfo(contestant.Key);
+                    return contestant.Key;
+                }      
+                
+            }
+
+            return null;
+        }
+
+        public void NotifyContestants()
+        {
+            foreach (KeyValuePair<Contestant,int> contestant in contestants)
+            {
+                    contestant.Key.NotifyContestant();
+            }
+        }
 
 
         public void PrintContestantInfo(Contestant contestant)

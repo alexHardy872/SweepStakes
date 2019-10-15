@@ -21,17 +21,18 @@ namespace SweepStakes
             stack.Push(sweepstakes);
         }
 
-        public void RemoveSweepstakes()
-        {
-            stack.Pop();
-        }
-
-
 
         public Sweepstakes GetSweepstakes()
         {
-            Sweepstakes sweepstakes = new Sweepstakes("name");
-            return sweepstakes;
+            return stack.Pop();
+        }
+
+        public void ViewSweepstakes()
+        {
+            foreach (Sweepstakes sweepstakes in stack)
+            {
+                Console.WriteLine(sweepstakes.name + " (" + stack.Count + " contestants)");
+            }
         }
 
     }

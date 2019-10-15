@@ -23,19 +23,23 @@ namespace SweepStakes
             queue.Enqueue(sweepstakes);
         }
 
-        public void RemoveSweepstakes()
-        {
-            queue.Dequeue();
-        }
+     
 
 
         public Sweepstakes GetSweepstakes()
         {
-            Sweepstakes sweepstakes = new Sweepstakes("name");
-            return sweepstakes;
+
+            return queue.Dequeue();
         }
 
+        public void ViewSweepstakes()
+        {
+            foreach (Sweepstakes sweepstakes in queue)
+            {
+                Console.WriteLine(sweepstakes.name + " (" + queue.Count + " contestants)");
+            }
 
+        }
 
 
 

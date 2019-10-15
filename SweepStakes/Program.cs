@@ -19,7 +19,7 @@ namespace SweepStakes
             string style = UI.GetManagerStyle();
             ISweepstakesManager manager = factory.CreateSweepstakesManager(style);
             MarketingFirm firm = new MarketingFirm(manager);
-            firm.CreateSweepStakes();
+            firm.Menu();
 
 
 

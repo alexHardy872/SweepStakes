@@ -20,6 +20,45 @@ namespace SweepStakes
             return sweepstakesManagerStyle;
         }
        
+        public static void MarketingFirmMenu()
+        {
+            Console.WriteLine("Options: {0} " +
+                "{0}Create new Sweepstakes 'S'" +
+                "{0}Get Sweepstakes 'G'" +    
+              "{0}Exit Application 'E'", Environment.NewLine);
+
+        }
+
+        public static string ValidateMFMenuSelection()
+        {
+            string selection = GetUserInput("Type 'S', 'G', or 'E'");
+            while (selection != "S" && selection != "G" && selection != "E")
+            {
+                selection = RetryGetUserInput("Type 'S', 'G', or 'E'");
+            }
+            return selection;
+        }
+
+        public static void SweepstakesMenu()
+        {
+            Console.WriteLine("Options: {0} " +
+                "{0}Register Contestant 'R'" +
+                "{0}Pick Winner of sweepstakes 'W'"+
+                "{0}Return to Sweepstakes Manager 'E'" , Environment.NewLine);
+        }
+
+
+
+        public static string SweepstakesMenuSelection()
+        {
+            string selection = GetUserInput("Type 'R', or 'W' or 'E'");
+            while (selection != "R" && selection != "W" && selection != "E")
+            {
+                selection = RetryGetUserInput("Type 'R', or 'W' or 'E'");
+            }
+            return selection;
+        }
+
 
 
         public static string GetUserInput(string question)
@@ -80,7 +119,7 @@ namespace SweepStakes
         {
             Console.WriteLine(contestant.firstName + " " + contestant.lastName);
             Console.WriteLine(contestant.email);
-            Console.WriteLine("Registration numver :" + contestant.registrationNumber);
+            Console.WriteLine("Registration number: " + contestant.registrationNumber);
         }
 
 
