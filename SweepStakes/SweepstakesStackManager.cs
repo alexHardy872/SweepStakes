@@ -24,7 +24,16 @@ namespace SweepStakes
 
         public Sweepstakes GetSweepstakes()
         {
-            return stack.Pop();
+            try
+            {
+               return stack.Pop();
+            }
+            catch
+            {
+               // UI.Error("no Sweepstakes in Stack");
+                return null;
+            }
+
         }
 
         public void ViewSweepstakes()

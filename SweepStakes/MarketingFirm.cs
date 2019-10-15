@@ -37,10 +37,18 @@ namespace SweepStakes
             {
                 case "G":
                     Sweepstakes tmp = manager.GetSweepstakes();
-                    tmp.Menu();
+                    if (tmp == null)
+                    {
+                        UI.Error("No Sweepstakes in manager! Add Sweepstakes to get sweepstakes");
+                        break;
+                    }
+                    tmp.GETMenu();
                     break;
                 case "S":
                     CreateSweepstakes();
+                    break;
+                case "V":
+                    manager.ViewSweepstakes();
                     break;
                 case "E":
                     quit = true;

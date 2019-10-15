@@ -29,7 +29,16 @@ namespace SweepStakes
         public Sweepstakes GetSweepstakes()
         {
 
-            return queue.Dequeue();
+            try
+            {
+                return queue.Dequeue();
+            }
+            catch
+            {
+              // UI.Error("no Sweepstakes in Queue");
+                return null;
+            }
+                
         }
 
         public void ViewSweepstakes()

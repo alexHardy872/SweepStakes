@@ -43,22 +43,46 @@ namespace SweepStakes
         {
             Console.WriteLine("Options: {0} " +
                 "{0}Register Contestant 'R'" +
-                "{0}Pick Winner of sweepstakes 'W'"+
-                "{0}Return to Sweepstakes Manager 'E'" , Environment.NewLine);
+               // "{0}Pick Winner of sweepstakes 'W'"+
+                "{0}Done Adding to this sweepstakes? 'D'" , Environment.NewLine);
         }
 
 
 
         public static string SweepstakesMenuSelection()
         {
-            string selection = GetUserInput("Type 'R', or 'W' or 'E'");
-            while (selection != "R" && selection != "W" && selection != "E")
+            string selection = GetUserInput("Type 'R' or 'D'");
+            while (selection != "R" && selection != "D")
             {
-                selection = RetryGetUserInput("Type 'R', or 'W' or 'E'");
+                selection = RetryGetUserInput("Type 'R', or 'D'");
             }
             return selection;
         }
 
+        public static void GETSweepstakesMenu()
+        {
+            Console.WriteLine("Options: {0} " +
+               // "{0}Register Contestant 'R'" +
+                "{0}Pick Winner of sweepstakes 'W'"+
+                "{0}Done Adding to this sweepstakes? 'D'", Environment.NewLine);
+        }
+
+
+
+        public static string GETSweepstakesMenuSelection()
+        {
+            string selection = GetUserInput("Type 'W' or 'D'");
+            while ( selection != "W" && selection != "D")
+            {
+                selection = RetryGetUserInput("Type 'W' or 'D'");
+            }
+            return selection;
+        }
+
+        public static void DisplaySweepstakes(Sweepstakes sweepstakes)
+        {
+            Console.WriteLine(sweepstakes.name + ": " + sweepstakes.usedList.Count + " registered contestants");
+        }
 
 
         public static string GetUserInput(string question)
@@ -74,6 +98,14 @@ namespace SweepStakes
             Console.WriteLine(question);
             Console.ResetColor();
             return Console.ReadLine();
+        }
+
+        public static void Error(string error)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(error);
+            Console.ResetColor();
+            
         }
 
 

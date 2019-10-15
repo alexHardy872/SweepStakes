@@ -16,6 +16,7 @@ namespace SweepStakes
         public string winner;
         bool menuLoop = true;
         
+        
 
         
         
@@ -60,6 +61,7 @@ namespace SweepStakes
             menuLoop = true;
             do
             {
+                UI.DisplaySweepstakes(this);
                 UI.SweepstakesMenu();
                 MenuSelection(UI.SweepstakesMenuSelection());
             }
@@ -69,20 +71,42 @@ namespace SweepStakes
 
         public void MenuSelection(string selection)
         {
+            
             switch (selection)
             {
                 case "R":
                     Contestant contestant = new Contestant();
                     RegisterContestant(contestant);
                     break;
-                case "W":
-                    PickWinner();
-                    menuLoop = false;
-                    break;
-                case "E":
+               // case "W":
+               //     PickWinner();
+               //     menuLoop = false;
+               //     break;
+                case "D":
                     menuLoop = false;
                     break;
              
+            }
+        }
+
+        public void GETMenu()
+        {
+            UI.DisplaySweepstakes(this);
+            UI.GETSweepstakesMenu();
+                GETMenuSelection(UI.GETSweepstakesMenuSelection());
+           
+        }
+
+        public void GETMenuSelection(string selection)
+        {
+            
+            switch (selection)
+            {
+                case "W":
+                    PickWinner();
+                    break;
+                case "D":                
+                    break;
             }
         }
 
@@ -118,6 +142,8 @@ namespace SweepStakes
 
         public void PrintContestantInfo(Contestant contestant)
         {
+            UI.DisplaySweepstakes(this);
+            Console.WriteLine("WINNER!");
             UI.DisplayContestantInformation(contestant);
         }
 
