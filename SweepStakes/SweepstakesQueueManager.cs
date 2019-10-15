@@ -20,7 +20,12 @@ namespace SweepStakes
 
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
+            // ENQUEUE
+        }
 
+        public void RemoveSweepstakes(Sweepstakes sweepstakes)
+        {
+            // DEQUEUE
         }
 
 

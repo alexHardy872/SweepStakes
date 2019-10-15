@@ -9,6 +9,14 @@ namespace SweepStakes
     class MarketingFirm
     {
 
+        ISweepstakesManager manager;
+
+
+    public MarketingFirm(ISweepstakesManager manager)
+    {
+            this.manager = manager;
+
+    }
 
 
 
@@ -16,10 +24,9 @@ namespace SweepStakes
 
 
 
-
-    public void CreateSweepStakes()
+    public void CreateSweepStakes() // send to factory to build one
         {
-
+     
         }
 
 

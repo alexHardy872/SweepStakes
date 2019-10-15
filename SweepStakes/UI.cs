@@ -9,15 +9,25 @@ namespace SweepStakes
 {
     static class UI
     {
-        
 
+        public static string GetManagerStyle()
+        {
+            string sweepstakesManagerStyle = GetUserInput("Stack or Queue structured Sweepstakes? ('S', or 'Q')").ToUpper();
+            while (sweepstakesManagerStyle != "Q" && sweepstakesManagerStyle != "S")
+            {
+                sweepstakesManagerStyle = RetryGetUserInput("Stack or Queue structured Sweepstakes? ('S', or 'Q')").ToUpper();
+            }
+            return sweepstakesManagerStyle;
+        }
        
+
 
         public static string GetUserInput(string question)
         {
             Console.WriteLine(question);
             return Console.ReadLine();
         }
+
 
         public static string RetryGetUserInput(string question)
         {
@@ -28,6 +38,7 @@ namespace SweepStakes
         }
 
 
+
         public static int GetUserInputInt(string question)
         {
             Console.WriteLine(question);
@@ -36,6 +47,7 @@ namespace SweepStakes
             return number;
         }
 
+
         public static string RetryGetUserInputInt(string question)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -43,6 +55,7 @@ namespace SweepStakes
             Console.ResetColor();
             return Console.ReadLine();
         }
+
 
         public static int CheckToInt(string stringNum)
         {
@@ -55,6 +68,7 @@ namespace SweepStakes
             return result;
         }
 
+
         public static void GetContestantInformation(Contestant contestant, Random random)
         {
             contestant.firstName = GetFirstName();
@@ -63,15 +77,18 @@ namespace SweepStakes
             contestant.registrationNumber = GenerateRandomNumber(random, 100000, 999999);
         }
 
+
         public static string GetFirstName()
         {
             return GetUserInput("Enter the contestant's FIRST name");
         }
 
+
         public static string GetLastName()
         {
             return GetUserInput("Enter the contestant's LAST name");
         }
+
 
         public static string GetEmail()
         {
@@ -80,7 +97,7 @@ namespace SweepStakes
             while (success == false)
             {
                 email = RetryGetUserInput("email not valid.. please enter a valid EMAIL adress");
-                success = IsValidEmail(email));
+                success = IsValidEmail(email);
             }
             return email;
         }
@@ -107,6 +124,8 @@ namespace SweepStakes
             int rand = random.Next(min, max);
             return rand;
         }
+
+        
 
 
 

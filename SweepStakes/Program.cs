@@ -11,8 +11,15 @@ namespace SweepStakes
         static void Main(string[] args)
         {
 
-           // UI.GetContestantInformation();
-            UI.GetUserInputInt("enter a number");
+         
+
+            SweepstakesFactory factory = new SweepstakesFactory();
+            string style = UI.GetManagerStyle();
+            ISweepstakesManager manager = factory.CreateSweepstakesManager(style);
+            MarketingFirm firm = new MarketingFirm(manager);
+
+
+
         }
     }
 }
