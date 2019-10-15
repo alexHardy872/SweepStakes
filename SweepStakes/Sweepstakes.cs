@@ -9,9 +9,10 @@ namespace SweepStakes
     public class Sweepstakes
     {
 
-        // dictionary
-        public Dictionary<string, string> dictionary;
-        public Random random;
+        
+        public Dictionary<Contestant, int> contestants;
+        public string name;
+        public List<int> usedList;
 
         
 
@@ -22,7 +23,9 @@ namespace SweepStakes
 
         public Sweepstakes(string name)
         {
-            dictionary = new Dictionary<string, string>();
+            contestants = new Dictionary<Contestant, int>();
+            this.name = name;
+            usedList = new List<int>();
             
         }
 
@@ -30,16 +33,33 @@ namespace SweepStakes
         public void RegisterContestant(Contestant contestant)
         {
             UI.GetContestantInformation(contestant);
-            contestant.registrationNumber = UI.GenerateRandomNumber(10000, 99999); // TEST IF UNIQUE?
+            contestant.registrationNumber = FindUniqueRegistrationNumber(contestant);
+            contestants.Add(contestant, contestant.registrationNumber); // what key values?
             
         }
 
-
-        public Contestant PickWinner()
+        public int FindUniqueRegistrationNumber(Contestant contestant)
         {
-            Contestant contestant = new Contestant();
-            return contestant;
+            int regNum;
+            do
+            {
+                regNum = UI.GenerateRandomNumber(10000, 99999);
+            }
+            while (usedList.Contains(regNum));
+
+            usedList.Add(regNum);
+
+            return regNum;
         }
+
+
+       // public Contestant PickWinner()
+        //{
+            // CHOOSE FROM LIST OF VALUES RANDOMLY
+            // FIND CONTESTANT WITH THAT ID
+
+            //return contestant;
+       // }
 
 
         public void PrintContestantInfo(Contestant contestant)
