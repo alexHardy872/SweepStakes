@@ -64,7 +64,7 @@ namespace SweepStakes
             Console.WriteLine("Options: {0} " +
                // "{0}Register Contestant 'R'" +
                 "{0}Pick Winner of sweepstakes 'W'"+
-                "{0}Done Adding to this sweepstakes? 'D'", Environment.NewLine);
+                "{0}Delete this Sweepstakes? 'D'", Environment.NewLine);
         }
 
 
@@ -169,7 +169,7 @@ namespace SweepStakes
 
         public static string GetEmail()
         {
-            string email = GetUserInput("Enter the contestant's EMAIL adress");
+            string email = GetUserInput("Enter the contestant's EMAIL address");
             bool success = IsValidEmail(email);
             while (success == false)
             {

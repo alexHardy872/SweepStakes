@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace SweepStakes
 {
@@ -11,6 +12,7 @@ namespace SweepStakes
 
         
         public Dictionary<Contestant, int> contestants;
+        public List<IContestant> subscribers;
         public string name;
         public List<int> usedList;
         public string winner;
@@ -26,6 +28,7 @@ namespace SweepStakes
         public Sweepstakes(string name)
         {
             contestants = new Dictionary<Contestant, int>();
+            subscribers = new List<IContestant>();
             this.name = name;
             usedList = new List<int>();
 
@@ -37,7 +40,8 @@ namespace SweepStakes
         {
             UI.GetContestantInformation(contestant);
             contestant.registrationNumber = FindUniqueRegistrationNumber();
-            contestants.Add(contestant, contestant.registrationNumber); 
+            contestants.Add(contestant, contestant.registrationNumber);
+            subscribers.Add(contestant); // add to mail list
             
         }
 
@@ -99,7 +103,7 @@ namespace SweepStakes
 
         public void GETMenuSelection(string selection)
         {
-            
+            UI.DisplaySweepstakes(this);
             switch (selection)
             {
                 case "W":
@@ -133,9 +137,9 @@ namespace SweepStakes
 
         public void NotifyContestants()
         {
-            foreach (KeyValuePair<Contestant,int> contestant in contestants)
+            foreach (IContestant contestant in subscribers)
             {
-                    contestant.Key.NotifyContestant();
+                contestant.NotifyContestant(this.name);
             }
         }
 
@@ -145,6 +149,7 @@ namespace SweepStakes
             UI.DisplaySweepstakes(this);
             Console.WriteLine("WINNER!");
             UI.DisplayContestantInformation(contestant);
+            NotifyContestants();
         }
 
 

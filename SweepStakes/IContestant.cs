@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace SweepStakes
 {
@@ -12,7 +13,9 @@ namespace SweepStakes
 
 
 
-        void NotifyContestant();
+        void NotifyContestant(string sweetstakes);
+
+        //string GetEmail();
 
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace SweepStakes
 {
@@ -23,19 +24,47 @@ namespace SweepStakes
         }
 
 
-        public void NotifyContestant()
+        public void NotifyContestant(string sweepstakes)
         {
-            
-            if (isWinner == true)
+            MailMessage mail = new MailMessage();
+                
+                    mail.From = new MailAddress("alexhardy872@gmail.com");
+                    mail.To.Add(email);
+                    mail.Subject = "";
+                    mail.Body = "";
+                    mail.IsBodyHtml = true;
+                    if (isWinner == true)
+                    {
+                        mail.Subject = "WINNER!";
+                        mail.Body = "<h1> CONGRADUALTONS! "+firstName+" "+lastName+" </h1> <p> You won the "+sweepstakes+" sweepskates! </p>";
+
+                    }
+                    else
+                    {
+                        mail.Subject = "SORRY!";
+                        mail.Body = "<h1> SORRY! " + firstName + " " + lastName + "</h1> <p> You did <strong>NOT</strong> win the  " + sweepstakes + " sweepstakes, better luck next time!</p>";
+                    }
+             
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                
+                    smtp.Credentials = new System.Net.NetworkCredential("alexhardy872@gmail.com", "sock872@UWL");
+                    smtp.EnableSsl = true;
+            try
             {
-                // EMAIL CONTESTANT
+                smtp.Send(mail);
             }
-            else
+                    
+
+            
+            catch (Exception e)
             {
-                // EMAIL CONTESTANT WITH LOSS
+                // email adress not found or unsuccessful
             }
 
         }
+
+      
+        
 
 
 
