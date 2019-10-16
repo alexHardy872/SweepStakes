@@ -41,7 +41,7 @@ namespace SweepStakes
             UI.GetContestantInformation(contestant);
             contestant.registrationNumber = FindUniqueRegistrationNumber();
             contestants.Add(contestant, contestant.registrationNumber);
-            subscribers.Add(contestant); // add to mail list
+            subscribers.Add(contestant); 
             
         }
 
@@ -50,7 +50,7 @@ namespace SweepStakes
             int regNum;
             do
             {
-                regNum = UI.GenerateRandomNumber(10000, 99999);
+                regNum = UI.GenerateRandomNumber(10000, 100000);
             }
             while (usedList.Contains(regNum));
 
@@ -118,7 +118,7 @@ namespace SweepStakes
         public Contestant PickWinner()
         {
             
-            int winningNum = usedList[UI.GenerateRandomNumber(0, usedList.Count-1)];
+            int winningNum = usedList[UI.GenerateRandomNumber(0, usedList.Count)];
 
             foreach (KeyValuePair<Contestant, int> contestant in contestants)
             {
