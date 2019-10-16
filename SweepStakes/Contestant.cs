@@ -24,7 +24,7 @@ namespace SweepStakes
         }
 
 
-        public void NotifyContestant(string sweepstakes)
+        public void NotifyContestant(string sweepstakes) // just expeeriment to mess with MailAdress
         {
             MailMessage mail = new MailMessage();
                 
