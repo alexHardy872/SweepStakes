@@ -47,7 +47,7 @@ namespace SweepStakes
              
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 
-                    smtp.Credentials = new System.Net.NetworkCredential("alexhardy872@gmail.com", "sock872@UWL");
+                    smtp.Credentials = new System.Net.NetworkCredential("", "");
                     smtp.EnableSsl = true;
             try
             {
@@ -59,6 +59,7 @@ namespace SweepStakes
             catch (Exception e)
             {
                 // email adress not found or unsuccessful
+                Console.WriteLine("Sender information required for email sends. N/A in code");
             }
 
         }
